@@ -9,7 +9,7 @@ after the first call.
 extern int slow_function();
 
 int main() {
-	sk::lazy<T> lz(slow_function);
+	sk::lazy<int> lz(slow_function);
 
 	// Call slow_function() and cache the result.
 	std::cout << "the result of slow_function is " << lz.get() << '\n';
