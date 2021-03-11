@@ -29,8 +29,8 @@
 #ifndef SK_LAZY_HXX_INCLUDED
 #define SK_LAZY_HXX_INCLUDED
 
-#include <optional>
 #include <functional>
+#include <optional>
 
 namespace sk {
 
@@ -39,24 +39,23 @@ namespace sk {
      * get() is called.  the result is cached, so get() can be called multiple
      * times.
      */
-    template<typename T>
-    struct lazy {
-        explicit lazy(auto &&);
+    template <typename T> struct lazy {
+        template <typename Callable> explicit lazy(Callable &&);
 
         T const &get();
 
-    private:
+      private:
         std::optional<T> _value;
         std::function<T()> _producer;
     };
 
-    template<typename T>
-    lazy<T>::lazy(auto &&function) {
+    template <typename T>
+    template <typename Callable>
+    lazy<T>::lazy(Callable &&function) {
         _producer = function;
     }
 
-    template<typename T>
-    T const &lazy<T>::get() {
+    template <typename T> T const &lazy<T>::get() {
         if (!_value)
             _value = _producer();
         return *_value;

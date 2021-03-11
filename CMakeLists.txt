@@ -40,6 +40,6 @@ endif()
 add_library(sk-lazy INTERFACE)
 target_sources(sk-lazy PRIVATE include/sk/lazy.hxx)
 target_include_directories(sk-lazy INTERFACE include)
-target_compile_features(sk-lazy INTERFACE cxx_std_20)
+target_compile_features(sk-lazy INTERFACE cxx_std_17)
 
 install(DIRECTORY "include/sk" TYPE INCLUDE)
